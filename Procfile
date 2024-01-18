@@ -1,1 +1,1 @@
-web: waitress-serve codestar.wsgi:application
+web: waitress-serve --port=$PORT codestar.wsgi:application
