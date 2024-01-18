@@ -1,14 +1,13 @@
 import os
 
-os.environ.setdefault("DATABASE_URL", "postgres://ygkwkcqh:***@snuffleupagus.db.elephantsql.com/ygkwkcqh")
+# Load environment variables from .env file
+from dotenv import load_dotenv
 
+load_dotenv()
 
-# Set the DEBUG mode (True for development, False for production)
-DEBUG = True
-
-# Add any other Django settings or custom environment variables you need
-# For example:
-# DATABASE_URL = 'your-database-url'
-
-# Make sure to add the following lines to the end of your env.py
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'codestar.settings')
+# Set default values for environment variables
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "codestar.settings")
+os.environ.setdefault("SECRET_KEY", "django-insecure-&m%gu-ez==#b@$+_t99xi_wgv()$4vr7#$-og^=x4rdhx6lh6j")
+os.environ.setdefault("DEBUG", "True")
+os.environ.setdefault("ALLOWED_HOSTS", "djang.herokuapp.com")
+os.environ.setdefault("DATABASE_URL", "postgres://your_username:your_password@localhost:5432/your_database_name")
