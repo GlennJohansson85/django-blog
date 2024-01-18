@@ -1,20 +1,19 @@
-from pathlib import Path
 import os
+from pathlib import Path
+from decouple import config
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
 
+# Load environment variables from .env file in the same directory as settings.py
+env_path = Path(__file__).resolve().parent.parent / '.env'
+config.read_dotenv(env_path)
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-&m%gu-ez==#b@$+_t99xi_wgv()$4vr7#$-og^=x4rdhx6lh6j')
 
-SECRET_KEY = 'django-insecure-&m%gu-ez==#b@$+_t99xi_wgv()$4vr7#$-og^=x4rdhx6lh6j'
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-DEBUG = True
-
-ALLOWED_HOSTS = [
-    "localhost",  
-]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,djang.herokuapp.com').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,10 +55,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'codestar.wsgi.application'
 
+# Use dj_database_url to parse the DATABASE_URL
 DATABASES = {
-    'default':  dj_database_url.parse(os.environ.get("postgres://ygkwkcqh:***@snuffleupagus.db.elephantsql.com/ygkwkcqh"))
+    'default': dj_database_url.parse(config('DATABASE_URL', default='sqlite:///db.sqlite3'), conn_max_age=600),
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -84,6 +83,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
