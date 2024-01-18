@@ -1,1 +1,1 @@
-gunicorn codestar.wsgi
+web: waitress-serve codestar.wsgi:application
