@@ -31,10 +31,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if "DEBUG" in os.environ and os.environ.get("DEBUG").lower() == "true" else False
 
-ALLOWED_HOSTS = [
-    "localhost",
-    ".herokuapp.com",
-]
+ALLOWED_HOSTS = ['djang-873aefc81ab5.herokuapp.com', 'yourdomain.com', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -48,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -89,6 +87,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = '/static/'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
