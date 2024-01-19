@@ -3,6 +3,7 @@ from django.urls import path, include
 from blog import views as blog_views
 
 urlpatterns = [
-    path("blog/", blog_views.my_blog, name='blog'),
+    path('', blog_views.my_blog, name='blog'),  # Handle the root URL
+    path('blog/', blog_views.my_blog, name='blog'),  # Handle /blog/ URL
     path('admin/', admin.site.urls),
 ]
