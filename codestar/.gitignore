@@ -1,9 +1,0 @@
-env.py
-core.Microsoft*
-core.python*
-core.mongo*
-__pycache__/
-*.py[cod]
-node_modules/
-.github/
-cloudinary_python.txt
