@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import dj_database_url
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,23 +19,20 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
 # Update the DATABASES configuration
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("postgres://ygkwkcqh:K5iV46-vAXnb-70h49jdixQQmUiqBfs3@snuffleupagus.db.elephantsql.com/ygkwkcqh"))
-} if "DATABASE_URL" not in os.environ else DATABASES
+DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))} if "DATABASE_URL" in os.environ else DATABASES
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True if "DEBUG" in os.environ and os.environ.get("DEBUG").lower() == "true" else False
 
 ALLOWED_HOSTS = [
-    "loacalhost",
+    "localhost",
     ".herokuapp.com",
 ]
 
@@ -90,7 +88,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-STATIC_URL = '/static/'  # Corrected from 'static/' to '/static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
