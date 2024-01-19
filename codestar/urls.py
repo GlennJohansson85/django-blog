@@ -4,6 +4,5 @@ from blog import views as blog_views
 
 urlpatterns = [
     path('', blog_views.my_blog, name='blog'),  # Handle the root URL
-    path('blog/', blog_views.my_blog, name='blog'),  # Handle /blog/ URL
     path('admin/', admin.site.urls),
 ]
