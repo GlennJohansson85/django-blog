@@ -1,14 +1,12 @@
 # blog/views.py
 
 from django.shortcuts import render
-from django.views.generic import ListView
-from blog.models import Post
+from django.views import generic
+from .models import Post
 
-def my_blog(request):
-    return render(request, 'index.html')
 
-class PostList(ListView):
-    model = Post
-    template_name = 'post_list.html'
-    context_object_name = 'posts'
+class PostList(generic.ListView):
+    queryset = Post.objects.filter(status=1)
+    template_name = "blog/index.html"
+    paginate_by = 6
 
