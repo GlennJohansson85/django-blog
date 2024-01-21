@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT codestar.wsgi:application
+web: gunicorn codestar.wsgi
