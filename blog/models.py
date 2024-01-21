@@ -1,5 +1,9 @@
-from django.db import models
+#models.py
 from django.contrib.auth.models import User
+from django.db import models
+from django.utils import timezone
+from django_summernote.fields import SummernoteTextField  # Add this import
+from django_summernote.admin import SummernoteModelAdmin
 
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"))
