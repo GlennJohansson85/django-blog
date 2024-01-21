@@ -51,10 +51,13 @@
     </nav>
 
     <main class="flex-shrink-0 main-bg">
-
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
+        
+        <p class="m-0 text-center text-white">
+            {% block copyright %}
+                Made by Code Instituters
+            {% endblock copyright %}
+        </p>
+        
 
     </main>
 
