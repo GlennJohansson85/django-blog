@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django_summernote.admin import SummernoteModelAdmin  # Add this line
 
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"))
