@@ -1,17 +1,23 @@
-# admin.py
-from django_summernote.admin import SummernoteModelAdmin
 from django.contrib import admin
+from ckeditor.widgets import CKEditorWidget
+from django.db import models
 from .models import Post, Comment
 
-@admin.register(Post)
-class PostAdmin(SummernoteModelAdmin):
+class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'status')
     search_fields = ['title']
     list_filter = ('status',)
     prepopulated_fields = {'slug': ('title',)}
-    summernote_fields = ('content',)
+    formfield_overrides = {
+        models.TextField: {'widget': CKEditorWidget}
+    }
 
-@admin.register(Comment)
+
 class CommentAdmin(admin.ModelAdmin):
     # Add any specific configurations for the Comment model admin if needed
     pass
+
+admin.site.register(Post, PostAdmin)
+admin.site.register(Comment, CommentAdmin)
+
+
