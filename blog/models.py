@@ -1,9 +1,9 @@
-#models.py
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
-from django_summernote.fields import SummernoteTextField 
-from django_summernote.admin import SummernoteModelAdmin
+
+# Import CKEditor fields
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 STATUS = ((0, "Draft"), (1, "Published"))
@@ -14,7 +14,7 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="blog_posts"
     )
-    content = models.TextField()
+    content = RichTextField()  # Change from models.TextField() to RichTextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     exerpt = models.TextField(blank=True)
@@ -47,11 +47,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment {self.body} by {self.author}"
-
-class PostAdmin(SummernoteModelAdmin):
-
-    list_display = ('title', 'slug', 'status', 'created_on')
-    search_fields = ['title', 'content']
-    list_filter = ('status', 'created_on',)
-    prepopulated_fields = {'slug': ('title',)}
-    summernote_fields = ('content',)

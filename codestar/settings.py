@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 import dj_database_url
 from django.core.management.utils import get_random_secret_key
+from ckeditor.configs import DEFAULT_CONFIG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,6 +21,7 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
 # Update the DATABASES configuration
 DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))} if "DATABASE_URL" in os.environ else DATABASES
 
@@ -42,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_summernote',
+    'whitenoise.runserver_nostatic',
+    'ckeditor',
+    'ckeditor_uploader',
     'blog',
 ]
 
@@ -76,6 +80,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'codestar.wsgi.application'
+
+# CKEditor Configuration
+CKEDITOR_CONFIGS = {
+    'default': DEFAULT_CONFIG,
+}
 
 # Continue with the rest of your settings...
 

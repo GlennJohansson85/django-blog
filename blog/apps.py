@@ -1,4 +1,3 @@
-# blog/apps.py
 from django.apps import AppConfig
 
 class BlogConfig(AppConfig):
@@ -6,9 +5,9 @@ class BlogConfig(AppConfig):
     name = 'blog'
 
     def ready(self):
-        # Import SummernoteModelAdmin here to avoid "Models aren't loaded yet" issue
-        from django_summernote.admin import SummernoteModelAdmin
-        # Register your models with SummernoteModelAdmin here
+        # Import necessary models here
         from .models import Post, Comment
-        admin.site.register(Post, SummernoteModelAdmin)
+        # Register your models with admin here
+        from django.contrib import admin
+        admin.site.register(Post)
         admin.site.register(Comment)
