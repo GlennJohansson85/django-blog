@@ -1,8 +1,7 @@
-#admin py
+# admin.py
 from django_summernote.admin import SummernoteModelAdmin
 from django.contrib import admin
 from .models import Post, Comment
-
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
@@ -12,5 +11,7 @@ class PostAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     summernote_fields = ('content',)
 
-# Register your models here.
-admin.site.register(Comment)
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    # Add any specific configurations for the Comment model admin if needed
+    pass
