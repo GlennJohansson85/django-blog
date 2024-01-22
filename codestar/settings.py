@@ -18,7 +18,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost,'https://git.heroku.com/djang.git '.herokuapp.com']
+    'localhost',
+    'djang.herokuapp.com',
+    # Add any other allowed hosts as needed
+]
 
 
 # Application definition
