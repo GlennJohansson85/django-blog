@@ -7,3 +7,6 @@ __pycache__/
 node_modules/
 .github/
 cloudinary_python.txt
+codestar/settings.py
+# Ignore the settings file
+path/to/your/settings.py
