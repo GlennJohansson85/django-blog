@@ -1,19 +1,17 @@
 from django.contrib import admin
-from django.db import models
 from .models import Post, Comment
+from django_summernote.admin import SummernoteModelAdmin
 
-class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'author', 'status', 'created_on', 'updated_on')
-    search_fields = ['title']
-    list_filter = ('status', 'created_on', 'updated_on', 'author')
+
+@admin.register(Post)
+class PostAdmin(SummernoteModelAdmin):
+
+    list_display = ('title', 'slug', 'status', 'created_on')
+    search_fields = ['title', 'content']
+    list_filter = ('status', 'created_on')
     prepopulated_fields = {'slug': ('title',)}
-    formfield_overrides = {
-        models.TextField: {'widget': admin.widgets.AdminTextareaWidget},
-    }
+    summernote_fields = ('content',)
 
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ('post', 'author', 'body', 'approved', 'created_on')
-    list_filter = ('approved', 'created_on', 'author', 'post')
 
-admin.site.register(Post, PostAdmin)
-admin.site.register(Comment, CommentAdmin)
+# Register your models here.
+admin.site.register(Comment)
