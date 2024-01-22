@@ -10,3 +10,4 @@ cloudinary_python.txt
 codestar/settings.py
 # Ignore the settings file
 path/to/your/settings.py
+venv/
