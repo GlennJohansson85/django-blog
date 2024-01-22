@@ -2,7 +2,6 @@ import os
 from pathlib import Path
 import dj_database_url
 from django.core.management.utils import get_random_secret_key
-from ckeditor.configs import DEFAULT_CONFIG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,13 +27,13 @@ DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))} i
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: 
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['djang-873aefc81ab5.herokuapp.com', 'yourdomain.com', 'localhost']
+ALLOWED_HOSTS = ['djang-873aefc81ab5.herokuapp.com', 'localhost']
 
 # Application definition
 INSTALLED_APPS = [
@@ -44,14 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
-    'ckeditor_uploader',
     'blog',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,13 +76,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'codestar.wsgi.application'
 
-# CKEditor Configuration
-CKEDITOR_CONFIGS = {
-    'default': DEFAULT_CONFIG,
-}
-
-# Continue with the rest of your settings...
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 LANGUAGE_CODE = 'en-us'
@@ -97,7 +86,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
